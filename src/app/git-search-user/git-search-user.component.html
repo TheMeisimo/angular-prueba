@@ -1,0 +1,30 @@
+<h3>{{displayQuery}}</h3>
+<div [ngClass]="'col-md-12'">
+    <input [ngClass]="['form-control']" name="query" placeholder="Enter search" [(ngModel)]="searchQuery"/>
+    <button [ngClass]="['btn', 'btn-primary']" (click) = "gitSearchUser()">Submit</button>
+</div>
+<div *ngIf="searchUserResult && !queryError; else elseBlock">
+    <h3 class="total"> Total-Results : {{searchUserResult.total_count}}</h3>
+    <ul class="list">
+        <li [ngClass]="[ 'list_item', (i % 2) ? 'silver' : 'white']"
+            *ngFor="let result of searchUserResult.items; index as i">
+            <img class="avatar" [src]="result.avatar_url" />
+            <h3 class="title"> {{result.name}}
+                <small>{{result.login | uppercase}} </small>
+            </h3>
+            <p>His Score is {{result.score}}</p>
+            <div>
+                <div *ngIf="result.site_admin; else noAdminText">
+                    <h4>:O! An Admin!</h4>
+                </div>
+                <ng-template #noAdminText>Normal user...</ng-template>
+            </div>
+            <a [href]="result.html_url">
+                <strong>{{result.html_url}}</strong>
+            </a>
+        </li>
+    </ul>
+</div>
+<ng-template #elseBlock>
+    <h3>Error en la consulta :(</h3>
+</ng-template>

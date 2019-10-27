@@ -12,31 +12,35 @@ export class GitSearchService {
   }> = [];
   constructor(private http: HttpClient) { }
 
-  gitSearch = (query:string):Promise<GitSearch> => {
+  gitSearch = (repositoryName:string):Promise<GitSearch> => {
     let promise = new Promise<GitSearch>((resolve,reject)=>{
-      if(this.cachedValues[query]){
-        resolve(this.cachedValues[query]);
+      if(this.cachedValues[repositoryName]){
+        resolve(this.cachedValues[repositoryName]);
       }else{
-        this.http.get('https://api.github.com/search/repositories?q='+query).toPromise().then((response)=>{
-          resolve(response as GitSearch)
-        },(error)=>{
-          reject(error);
-        })
+        this.http
+          .get('https://api.github.com/search/repositories?q='+repositoryName)
+          .toPromise()
+         .then(
+            response => resolve(response as GitSearch),
+            error    => reject(error)
+          )
       }
     })
     return promise
   }
 
-  gitSearchUser = (query:string):Promise<GitSearchUser> => {
+  gitSearchUser = (userName:string):Promise<GitSearchUser> => {
     let promise = new Promise<GitSearchUser>((resolve,reject)=>{
-      if(this.cachedValues[query]){
-        resolve(this.cachedValues[query]);
+      if(this.cachedValues[userName]){
+        resolve(this.cachedValues[userName]);
       }else{
-        this.http.get('https://api.github.com/search/users?q='+query).toPromise().then((response)=>{
-          resolve(response as GitSearchUser)
-        },(error)=>{
-          reject(error);
-        })
+        this.http
+          .get('https://api.github.com/search/users?q='+userName)
+          .toPromise()
+          .then(
+            (response)=>{ resolve(response as GitSearchUser)},
+            (error)   =>{ reject(error) }
+          )
       }
     })
     return promise
