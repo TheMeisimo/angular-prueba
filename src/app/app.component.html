@@ -1,10 +1,4 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <div style="text-align: center">
-  <h1>Taller</h1>
-  <div [ngClass]="['query-card']">
-      <app-git-search></app-git-search>
-  </div>
-  <div [ngClass]="['query-card']">
-    <app-git-search-user></app-git-search-user>
-  </div>
+  <router-outlet #routerOutlet="outlet"></router-outlet>
 </div>

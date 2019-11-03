@@ -1,7 +1,9 @@
-<h3>{{displayQuery}}</h3>
+<h3>Usuarios con {{displayQuery}}</h3>
 <div [ngClass]="'col-md-12'">
-    <input [ngClass]="['form-control']" name="query" placeholder="Enter search" [(ngModel)]="searchQuery"/>
-    <button [ngClass]="['btn', 'btn-primary']" (click) = "gitSearchUser()">Submit</button>
+    <input [ngClass]="['form-control']" name="query" placeholder="Enter search" [(ngModel)]="searchQuery" />
+    <button [ngClass]="['btn', 'btn-primary']" (click)="gitSearchUser()">
+        Submit
+    </button>
 </div>
 <div *ngIf="searchUserResult && !queryError; else elseBlock">
     <h3 class="total"> Total-Results : {{searchUserResult.total_count}}</h3>
@@ -26,5 +28,5 @@
     </ul>
 </div>
 <ng-template #elseBlock>
-    <h3>Error en la consulta :(</h3>
+    <h3>{{msgError}}</h3>
 </ng-template>

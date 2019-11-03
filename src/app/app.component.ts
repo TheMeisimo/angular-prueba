@@ -8,15 +8,10 @@ import { OnInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  ngOnInit(){
-    /* this.GitSearchService.gitSearch('java').then((response)=>{
-      alert('Total repositories found: '+response.total_count);
-    },(error) => {
-      alert('Error: '+ error.statusText);
-    }) */
-  }
-  constructor(private GitSearchService: GitSearchService){
+  ngOnInit() {
 
   }
-  title = 'Otro titulo';
+  constructor(private GitSearchService: GitSearchService) {
+  }
+  
 }

@@ -1,0 +1,22 @@
+<div>
+  <h1>Page {{currentPage}}</h1>
+  <div [ngClass]="['botonera']">
+    <div *ngIf=" (1 < currentPage)">
+      <button (click)="prevPage()" [ngClass]="['boton', 'btn', 'btn-primary']">Anterior</button>
+    </div>
+    <button (click)="nextPage()" [ngClass]="['boton', 'btn', 'btn-primary']">
+      Siguiente
+    </button>
+  </div>
+  <div>
+    <ng-container #outlet></ng-container>
+  </div>
+  <ng-template #content>
+    <div [ngClass]="['query-card']">
+      <app-git-search [currentPage]="currentPage"></app-git-search>
+    </div>
+    <div [ngClass]="['query-card']">
+      <app-git-search-user [currentPage]="currentPage"></app-git-search-user>
+    </div>
+  </ng-template>
+</div>
